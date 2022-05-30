@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis配置文件-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lsw.ming.dao.mapper.DataLan8Mapper">
+
+
+<!--    List<DataLan8> getDataByTime(int year_s, int year_e, int day_s, int day_e);-->
+    <select id="getDataByTime" parameterType="int" resultType="com.lsw.ming.dao.pojo.DataLan8">
+        SELECT
+        *
+        FROM
+        data_lan8
+        WHERE
+        ( YEAR <![CDATA[>]]> #{year_s} AND YEAR <![CDATA[<]]> #{year_e} )
+        OR ( YEAR = #{year_s} AND DAY IN ( SELECT DAY FROM data_lan8 WHERE YEAR = #{year_s} ) AND DAY <![CDATA[>]]> #{day_s} )
+        OR ( YEAR = #{year_e} AND DAY IN ( SELECT DAY FROM data_lan8 WHERE YEAR = #{year_e} ) AND DAY <![CDATA[<]]> #{day_e} )
+    </select>
+</mapper>

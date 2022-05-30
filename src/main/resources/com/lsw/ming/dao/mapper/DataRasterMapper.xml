@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis配置文件-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lsw.ming.dao.mapper.DataRasterMapper">
+
+<!--    Result getRasterByTime(TimeParams timeParams);;
+在这个文件中，id代表方法名，parameterType表示输入变量的类型，resultType表示泛型的类型
+-->
+    <select id="getRasterByTime" parameterType="int" resultType="com.lsw.ming.dao.pojo.DataRaster">
+        select * from data_raster
+        <where>
+            year=#{startyear}
+        </where>
+    </select>
+</mapper>
